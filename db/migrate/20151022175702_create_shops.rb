@@ -7,6 +7,8 @@ class CreateShops < ActiveRecord::Migration
       t.string :address
       t.integer :user_id
       t.has_attached_file :avatar
+      t.boolean :approve
+      t.text :message
       t.timestamps null: false
     end
   end

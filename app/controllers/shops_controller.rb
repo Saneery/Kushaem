@@ -21,7 +21,7 @@ class ShopsController < ApplicationController
 	def show
 		@shop = Shop.find(params[:id])
 		@food = Food.new
-		@food.shop_id = @shop.id
+		
 	end
 
 	def edit

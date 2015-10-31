@@ -3,4 +3,5 @@ class Shop < ActiveRecord::Base
   has_many :foods
   has_attached_file :avatar
   has_many :comments, :as => :commentable
+  has_many :complaints
 end
