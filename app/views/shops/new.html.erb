@@ -1,0 +1,7 @@
+<h1>Создание общепита<h1>
+<%= form_for @shop do |f| %>
+	<%= f.text_field :name, placeholder: 'Name' %><br>
+	<%= f.text_area :description, placeholder: 'Description' %><br>
+	<%= f.text_field :address, placeholder: 'Address' %>
+	<%= f.submit "Create" %>
+<% end %>

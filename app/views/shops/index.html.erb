@@ -1,0 +1,3 @@
+<% @shops.each do |s| %>
+<%= link_to s.name, s%>-<%= s.user.first_name %><br>
+<% end %>

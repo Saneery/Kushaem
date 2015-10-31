@@ -1,0 +1,25 @@
+<h1>Регистрация нового пользователя</h1>
+<%= flash[:notice] %>
+<%= form_for @user do |f| %>
+<p>
+	Имя: <br>
+	<%= f.text_field :first_name %>
+</p>
+<p>
+	Фамилия: <br>
+	<%= f.text_field :last_name %>
+</p>
+<p>
+	E-mail: <br>
+	<%= f.text_field :email %>
+</p>
+<p>
+	Пароль: <br>
+	<%= f.password_field :password %>
+</p>
+<p>
+	Повторить пароль: <br>
+	<%= f.password_field :password_confirmation %>
+</p>
+<%= f.submit "Регистрация" %>
+<% end %>
