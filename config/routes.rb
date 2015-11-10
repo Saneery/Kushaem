@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :food
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :users
-  resources :shops
+  resources :publicks do
+    resources :food do 
+      resources :comments
+    end
+    resources :comments
+  end
+  get 'search' => 'food#index'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

@@ -1,3 +1,3 @@
 class Complaint < ActiveRecord::Base
-	belongs_to :shop
+	belongs_to :publick
 end

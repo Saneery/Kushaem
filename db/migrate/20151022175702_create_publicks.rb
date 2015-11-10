@@ -1,6 +1,6 @@
-class CreateShops < ActiveRecord::Migration
+class CreatePublicks < ActiveRecord::Migration
   def change
-    create_table :shops do |t|
+    create_table :publicks do |t|
       t.string :name
       t.text :description
       t.string :city

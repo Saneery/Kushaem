@@ -1,4 +1,8 @@
-<%= form_for @food, url: food_index_path, html: { multipart: true } do |form| %>
-  <%= form.file_field :image %>
-  <%= form.submit %>
-<% end %>
+<%= form_for @food, url: publick_food_index_path, html: { multipart: true } do |f| %>
+    <%= f.text_field :name %><br>
+	<%= f.text_area :description %><br>
+	<%= f.text_field :price %><br>
+	<%= text_area_tag :ingredients %> <br>
+	<%= f.file_field :image %><br>
+	<%= f.submit %>
+	<% end %>

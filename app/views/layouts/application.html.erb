@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,14 @@
           </ul>
         <% else %>
           <ul>
-            <li><%= link_to "Log in", login_path %></a></li>
-            <li><%= link_to "Sign up", signup_path %></a></li>
+            <li><%= link_to "Log in", login_path %></li>
+            <li><%= link_to "Sign up", signup_path %></li>
           </ul>
         <% end %>
+        <p>
+        <%= link_to "Publicks", publicks_path %>
+        <%= link_to "Search", search_path %>
+        </p>
       </div>
     
       <div class="logo">

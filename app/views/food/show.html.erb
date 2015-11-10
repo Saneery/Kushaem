@@ -1,0 +1,10 @@
+<%= @food.name %><br>
+<%= @food.tag_list %><br>
+<%= image_tag @food.image.url(:medium) %><br>
+<% if current_user %>
+ Rate: <%= rating_for @food, 'original_score' %> <br>
+<% end %>
+<%= form_for publick_food_comments_path @food.publick, @food, @comment do |c| %>
+  <%= c.text_area :content %><br>
+  <%= c.submit %>
+  <% end %>

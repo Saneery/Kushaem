@@ -1,22 +1,42 @@
 class FoodController < ApplicationController
-  
+  before_action :require_editor, only: [:new, :edit, :update, :create]
   def index
-  	@food = Food.all 
+    search = params[:search]
+    if search!=nil&&search!=''
+      if params[:type]=='tag'
+  	    @foods = Food.tagged_with(search.downcase).paginate(per_page: 10, page: params[:page])
+      elsif params[:type]=='name'
+        @foods = Food.where(name: search.downcase).paginate(per_page: 10, page: params[:page])
+      end
+    else 
+      @foods = Food.all.paginate(per_page: 10, page: params[:page])
+    end
   end
 
   def new
-  	@food = Food.new
+  	publick = Publick.find(params[:publick_id])
+    @food = publick.foods.new
+    
   end
 
   def create
-  	@food = Food.create(food_params)
-    @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
-    @food.save
+    publick = Publick.find(params[:publick_id])
+    if current_user.id == publick.user_id
+      @food = publick.foods.create(food_params)
+      @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
+      @food.save
+    end
+    redirect_to publick
+  end
+
+  def show
+    @food = Food.find(params[:id])
+    @comment = @food.comments.new
   end
 
   private
   def food_params
-  	params.require(:food).permit(:image, :name, :description, :shop_id, :price)
+  	params.require(:food).permit(:image, :name, :description, :publick_id, :price)
   end
   
 end
