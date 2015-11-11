@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   resources :users
   resources :publicks do
-    resources :food do 
+    resources :food do
       resources :comments
     end
     resources :comments
   end
+  root 'food#mainpage'
   get 'search' => 'food#index'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'

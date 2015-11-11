@@ -4,7 +4,15 @@
 <% if current_user %>
  Rate: <%= rating_for @food, 'original_score' %> <br>
 <% end %>
-<%= form_for publick_food_comments_path @food.publick, @food, @comment do |c| %>
+<% @comments.each do |c| %>
+<p>
+  <%= c.user.first_name %> say:<br>
+  <%= c.content %><br>
+  </p>
+<% end %>
+<% if current_user %>
+<%= form_for @comment, url: publick_food_comments_path(@food.publick,@food,@comment) do |c| %>
   <%= c.text_area :content %><br>
   <%= c.submit %>
+  <% end %>
   <% end %>

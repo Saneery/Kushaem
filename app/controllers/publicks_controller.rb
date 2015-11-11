@@ -2,7 +2,7 @@ class PublicksController < ApplicationController
 	before_action :require_editor, only: [:new, :edit, :update, :create]
 
 	def index
-		@publicks = Publick.all
+		@publicks = Publick.where(approve: true)
 	end
 	
 	def new
@@ -11,6 +11,7 @@ class PublicksController < ApplicationController
 
 	def create
 		@publick = Publick.new(publick_params)
+		@publick.approve = false
 		if @publick.save
 			current_user.publicks << @publick
 			redirect_to publicks_path
@@ -19,6 +20,8 @@ class PublicksController < ApplicationController
 
 	def show
 		@publick = Publick.find(params[:id])
+		@comments = @publick.comments.all
+		@comment = @publick.comments.new
 	end
 
 	def edit

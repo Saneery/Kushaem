@@ -18,3 +18,13 @@ Original Score: <%= rating_for @publick, "original_score"%>
 <% if current_user && current_user.editor? && current_user[:id] == @publick.user_id %>
 <%= link_to 'add food', new_publick_food_path(@publick) %>
 <% end %>
+<% @comments.each do |c| %>
+  <%= c.user_id %><br>
+  <%= c.content %><br>
+<% end %>
+<% if current_user %>
+<%= form_for @comment, url: publick_comments_path(@publick,@comment) do |c| %>
+  <%= c.text_area :content %><br>
+  <%= c.submit %>
+  <% end %>
+  <% end %>

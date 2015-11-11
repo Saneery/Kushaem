@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   	@user = User.new
   end
   def show
-  	@user = current_user
+  	@user = User.find(params[:id])
   	unless @user
   		redirect_to login_url
   	end

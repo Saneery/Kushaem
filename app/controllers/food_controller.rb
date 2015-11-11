@@ -9,7 +9,7 @@ class FoodController < ApplicationController
         @foods = Food.where(name: search.downcase).paginate(per_page: 10, page: params[:page])
       end
     else 
-      @foods = Food.all.paginate(per_page: 10, page: params[:page])
+      @foods = Food.paginate(per_page: 10, page: params[:page])
     end
   end
 
@@ -32,6 +32,9 @@ class FoodController < ApplicationController
   def show
     @food = Food.find(params[:id])
     @comment = @food.comments.new
+    @comments = @food.comments.all
+  end
+  def mainpage
   end
 
   private

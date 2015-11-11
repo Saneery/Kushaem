@@ -1,1 +1,10 @@
-<%= @user.role %>
+<%= @user.role %><br>
+<% if current_user.role == 'editor' && @user.id == current_user.id%>
+Publicks:
+<br>
+  <% @user.publicks.each do |p| %>
+    <%= link_to p.name, p %><br>
+    <% end %>
+    <br>
+	<%= link_to 'add new publick', new_publick_path %>
+<% end %>

@@ -6,14 +6,3 @@
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", name: nil %>
   <% end %>
-  <% if params[:search] %>
-<% @foods.each do |f| %>
-<% if f.publick.approve == true %>
-  <p>
-  <%= f.name %>
-  <%= image_tag f.image.url(:medium) %>
-  </p> 
-  <% end %>
-<% end %>
-<%= will_paginate @foods %>
-<% end %>
