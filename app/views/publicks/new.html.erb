@@ -1,7 +1,14 @@
 <h1>Создание общепита<h1>
 <%= form_for @publick do |f| %>
-	<%= f.text_field :name, placeholder: 'Name' %><br>
-	<%= f.text_area :description, placeholder: 'Description' %><br>
-	<%= f.text_field :address, placeholder: 'Address' %>
+    <%= f.label 'Название: ' %><br>
+	<%= f.text_field :name %><br>
+	<%= f.label 'Описание: ' %><br>
+	<%= f.text_area :description %><br>
+	<%= f.label 'Город: ' %><br>
+	<%= f.text_field :city %><br>
+	<%= f.label 'Адресс' %><br>
+	<%= f.text_field :address %><br>
+	<%= f.label 'Изображение: ' %><br>
+	<%= f.file_field :image %><br>
 	<%= f.submit "Create" %>
 <% end %>

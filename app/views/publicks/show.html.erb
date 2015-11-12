@@ -1,18 +1,20 @@
-
 <%= link_to 'List', publicks_path %> 
+<% unless @publick.approve %><p style="color: red">
+Publick checking
+</p>
+<% end %>
 <h1><%= @publick.name %></h1><br>
 <%= @publick.description %><br>
 <%= @publick.address %><br>
-
-Original Score: <%= rating_for @publick, "original_score"%>
-
+<% if current_user && @publick.approve %>
+ <%= rating_for @publick, "original_score"%>
+<% end %>
 <h2> Menu </h2>
 <% @publick.foods.each do |f| %>
-<%= link_to f.name, publick_food_path(@publick, f) %><br>
+<%= link_to f.name, publick_food_path(@publick, f) %> - <%= f.price %> руб.<br>
 <%= f.tag_list %><br>
-<%= image_tag f.image.url(:medium) %><br>
-<% if current_user %>
- Rate: <%= rating_for f, 'original_score' %> <br>
+<% if current_user && @publick.approve %>
+ <%= rating_for f, 'original_score', :cancel => false %> <br>
  <% end %>
 <% end %>
 <% if current_user && current_user.editor? && current_user[:id] == @publick.user_id %>
@@ -22,7 +24,7 @@ Original Score: <%= rating_for @publick, "original_score"%>
   <%= c.user_id %><br>
   <%= c.content %><br>
 <% end %>
-<% if current_user %>
+<% if current_user && @publick.approve%>
 <%= form_for @comment, url: publick_comments_path(@publick,@comment) do |c| %>
   <%= c.text_area :content %><br>
   <%= c.submit %>

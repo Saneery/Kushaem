@@ -10,8 +10,9 @@
 <% @foods.each do |f| %>
 <% if f.publick.approve == true %>
   <p>
-  <%= f.name %>
-  <%= image_tag f.image.url(:medium) %>
+  <%= link_to f.name, publick_food_path(f.publick, f) %> - <%= f.price %> руб.<br>
+<%= f.tag_list %><br>
+  
   </p> 
   <% end %>
 <% end %>

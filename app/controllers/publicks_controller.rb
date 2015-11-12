@@ -14,7 +14,7 @@ class PublicksController < ApplicationController
 		@publick.approve = false
 		if @publick.save
 			current_user.publicks << @publick
-			redirect_to publicks_path
+			redirect_to user_path @publick.user
 		end
 	end
 

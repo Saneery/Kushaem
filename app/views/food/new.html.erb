@@ -1,8 +1,13 @@
 <%= form_for @food, url: publick_food_index_path, html: { multipart: true } do |f| %>
+    <%= f.label 'Название:' %><br>
     <%= f.text_field :name %><br>
+    <%= f.label 'Описание: ' %><br>
 	<%= f.text_area :description %><br>
+	<%= f.label 'Цена: '%><br>
 	<%= f.text_field :price %><br>
-	<%= text_area_tag :ingredients %> <br>
+	<%= f.label 'Ингредиенты ( введите через запятую ): ' %><br>
+	<%= text_area_tag :ingredients %><br>
+	<%= f.label 'Изображение: ' %><br>
 	<%= f.file_field :image %><br>
 	<%= f.submit %>
 	<% end %>

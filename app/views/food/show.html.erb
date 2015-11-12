@@ -2,7 +2,7 @@
 <%= @food.tag_list %><br>
 <%= image_tag @food.image.url(:medium) %><br>
 <% if current_user %>
- Rate: <%= rating_for @food, 'original_score' %> <br>
+  <%= rating_for @food, 'original_score' %> <br>
 <% end %>
 <% @comments.each do |c| %>
 <p>
