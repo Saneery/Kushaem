@@ -1,16 +1,10 @@
-class FoodController < ApplicationController
+
+class FoodsController < ApplicationController
+
   before_action :require_editor, only: [:new, :edit, :update, :create]
   def index
-    search = params[:search]
-    if search!=nil&&search!=''
-      if params[:type]=='tag'
-  	    @foods = Food.tagged_with(search.downcase).paginate(per_page: 10, page: params[:page])
-      elsif params[:type]=='name'
-        @foods = Food.where(name: search.downcase).paginate(per_page: 10, page: params[:page])
-      end
-    else 
-      @foods = Food.paginate(per_page: 10, page: params[:page])
-    end
+    publick = Publick.find(params[:publick_id])
+    @objects = publick.foods.paginate(per_page: 10, page: params[:page])
   end
 
   def new
@@ -22,9 +16,9 @@ class FoodController < ApplicationController
   def create
     publick = Publick.find(params[:publick_id])
     if current_user.id == publick.user_id
-      @food = publick.foods.create(food_params)
+      @food = publick.foods.new(food_params)
       @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
-      @food.save
+      @food.save!
     end
     redirect_to publick
   end
@@ -33,8 +27,6 @@ class FoodController < ApplicationController
     @food = Food.find(params[:id])
     @comment = @food.comments.new
     @comments = @food.comments.all
-  end
-  def mainpage
   end
 
   private

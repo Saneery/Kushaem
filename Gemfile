@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'activeadmin', github: 'activeadmin'
+gem 'simple_captcha', :git => 'git://github.com/pludoni/simple-captcha.git'
 
 # Plus integrations with:
 gem 'devise'
@@ -7,7 +8,8 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 gem 'kaminari'
-
+gem 'foundation-rails'
+gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'will_paginate'
@@ -57,3 +59,5 @@ group :development do
 end
 gem 'paperclip'
 gem 'acts-as-taggable-on', '~> 3.4'
+
+gem 'foundation-rails'

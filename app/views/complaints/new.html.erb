@@ -1,0 +1,15 @@
+<h1> Напишите жалобу </h1>
+<%= form_for @complaint, url: publick_complaints_path do |c| %>
+  <% if flash[:notice] %>
+    <div data-alert class="alert-box alert radius">
+    <%= flash[:notice] %>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+    </div>
+  <% end %>
+  <%= c.text_area :message %>
+
+  <%= show_simple_captcha %>
+  <%= c.button 'Отправить', class: "small" %>
+  
+<% end %>
+  

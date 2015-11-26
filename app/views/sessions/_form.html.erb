@@ -1,0 +1,13 @@
+	
+<%= form_for(:session, url: login_path) do |f| %> 
+  <%= f.email_field :email, :placeholder => "Email" %> 
+  <%= f.password_field :password, :placeholder => "Пароль" %> 
+  <%= f.submit "Вход", class: "button postfix" %>
+<% end %>
+<% if flash[:notices] %>
+<div data-alert class="alert-box alert radius">
+
+	<%= flash[:notices] %>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+</div>
+<% end %>

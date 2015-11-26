@@ -1,0 +1,21 @@
+<div class="comment">
+<div class="row collapse">
+<div class="large-2 columns">
+	<div class="img" style="padding-right: 10px">
+		 <%= image_tag comment.user.image, size: "65" %>
+	</div>
+</div>
+<div class="large-10 columns">
+	<p>
+		<b><%= comment.user.first_name %></b>
+	<br>
+	<%= comment.content %><br>
+	<small style="font-size: 13px; color: #555">
+		<%= localize(comment.created_at, format: :short) %>
+	</small>
+	</p>
+	
+
+</div>
+</div>
+</div>

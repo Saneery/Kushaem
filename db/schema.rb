@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111234950) do
+ActiveRecord::Schema.define(version: 20151121205223) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -133,6 +133,15 @@ ActiveRecord::Schema.define(version: 20151111234950) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
+
+  create_table "simple_captcha_data", force: :cascade do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

@@ -1,0 +1,26 @@
+<h1><%= @food.name %></h1>
+<%= image_tag @food.image_url %><br>
+<%= @food.tag_list %><br>
+
+<% if current_user %>
+  <%= rating_for @food, 'original_score', enable_half: true %> <br>
+<% end %>
+<hr>
+<% @comments.each do |c| %>
+<%= render c %>
+<% end %>
+<% if current_user %>
+<%= form_for @comment, url: food_comments_path(@food,@comment) do |c| %>
+  <% if flash[:notice] %>
+<div data-alert class="alert-box alert radius">
+    <%= flash[:notice] %>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+</div>
+<% end %>
+  <%= c.text_area :content %>
+
+  <%= show_simple_captcha %>
+  <%= c.button 'Отправить', class: "small" %>
+  
+  <% end %>
+  <% end %>

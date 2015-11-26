@@ -1,6 +1,6 @@
 class Publick < ActiveRecord::Base
-  before_save { |publick| publick.name.downcase! }
-  
+  before_save { |publick| publick.name.mb_chars.downcase! }
+  validates :name, :description, :address, :city, presence: true
   belongs_to :user
   has_many :foods
   has_attached_file :avatar
@@ -8,9 +8,19 @@ class Publick < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :complaints
   ratyrate_rateable 'original_score'
-  #надо написать коллбэк возращающий рейтинг
-  def rating
-  	r = Rate.where rateable_id: self.id, rateable_type: 'Shop'
-  	r.sum(:stars)/r.size
+
+  def self.sort_by_rating
+    Publick.all.sort_by(&:rating).reverse
   end
+
+  def rating
+  	r = Rate.where rateable_id: self.id, rateable_type: 'Publick'
+    
+    if r.size!=0
+      r.sum(:stars)/r.size
+    else
+      0.0
+    end
+  end
+
 end

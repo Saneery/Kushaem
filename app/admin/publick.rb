@@ -12,6 +12,6 @@ ActiveAdmin.register Publick do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-    permit_params :name, :description, :address, :approve
+    permit_params :name, :description, :address, :approve, :city, :message
 
 end

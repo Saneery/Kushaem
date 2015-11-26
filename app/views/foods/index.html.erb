@@ -1,0 +1,6 @@
+<% @objects.each do |f| %>
+<% if f.publick.approve == true %>
+  <%= render f %>
+<% end %>
+<% end %>
+<%= will_paginate @objects %>

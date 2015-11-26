@@ -1,5 +1,5 @@
 class Food < ActiveRecord::Base
-  before_save { |f| f.name.downcase! }
+  before_save { |f| f.name.mb_chars.downcase! }
   
   acts_as_taggable
   belongs_to :publick
@@ -8,8 +8,26 @@ class Food < ActiveRecord::Base
   has_many :comments, :as => :commentable
   do_not_validate_attachment_file_type :image
   ratyrate_rateable 'original_score'
+  
+  def self.sort_by_rating
+    Food.all.sort_by(&:rating).reverse
+  end
+
   def rating
   	r = Rate.where rateable_id: self.id, rateable_type: 'Food'
-  	r.sum(:stars)/r.size
+    
+    if r.size!=0
+  	  r.sum(:stars)/r.size
+    else
+      0.0
+    end
+  end
+
+  def image_url
+    if self.image_file_name
+      self.image.url
+    else
+      'no_image.png'
+    end
   end
 end

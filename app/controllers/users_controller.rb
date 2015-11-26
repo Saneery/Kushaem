@@ -4,6 +4,28 @@ class UsersController < ApplicationController
   def new
   	@user = User.new
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    if user_params[:password] == user_params[:password_confirmation]
+        @user = current_user
+        
+        if @user.update(user_params)
+          session[:user_id] = @user.id
+          redirect_to current_user
+        else
+          flash[:notice] = @user.errors.full_messages
+          redirect_to edit_url
+        end
+      else
+        flash[:notice] = 'Пароли не совпали'
+        redirect_to edit_url
+      end
+  end
+
   def show
   	@user = User.find(params[:id])
   	unless @user
@@ -20,6 +42,7 @@ class UsersController < ApplicationController
   	  	  session[:user_id] = @user.id
   	  	  redirect_to '/'
   	    else
+          flash[:notice] = @user.errors.full_messages
   	  	  redirect_to signup_url
   	    end
   	  else
@@ -34,7 +57,7 @@ class UsersController < ApplicationController
 
   private 
   def user_params
-  	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  	params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :avatar)
   end
   def exist?(mail)
   	User.find_by(email: mail)

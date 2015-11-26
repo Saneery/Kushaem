@@ -1,4 +1,12 @@
-<% @publicks.each do |s| %>
-<%= link_to s.name, s%>-<%= s.user.first_name %><br>
-
+<% @objects.each do |s| %>
+<div class="row">
+<b><%= link_to s.name.capitalize, s%></b>
+<p><%= s.description %></p>
+<% if current_user %>
+  <%= rating_for s, 'original_score', enable_half: true %> <br>
 <% end %>
+
+</div>
+<% end %>
+
+<%= will_paginate @objects %>

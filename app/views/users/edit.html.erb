@@ -1,0 +1,71 @@
+<h2>Редактирование</h2>
+<% if flash[:notice] %>
+<div data-alert class="alert-box alert radius">
+
+  <%= flash[:notice] %>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+</div>
+<% end %>
+<%= form_for @user do |f| %>
+<div class="row">
+    <div class="small-8 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Имя</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :first_name, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Фамилия</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :last_name, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">E-mail</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.email_field :email, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Пароль</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.password_field :password, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Повторите пароль</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.password_field :password_confirmation, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="right inline">Автарка</label>
+        </div>
+        <div class="small-9 columns">
+        
+          <%= f.file_field :avatar %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%= f.submit "Сохранить", class: "button"%>
+<% end %>

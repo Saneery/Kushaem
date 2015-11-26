@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   resources :users
   resources :publicks do
-    resources :food do
-      resources :comments
+    resources :complaints, only: [:new, :create]
+    resources :foods, shallow: true do
+      resources :comments, only: [:create]
     end
-    resources :comments
+    resources :comments, only: [:create]
   end
-  root 'food#mainpage'
-  get 'search' => 'food#index'
+  root 'publicks#index'
+  get 'search' => 'page#index'
   get 'signup' => 'users#new'
-  get 'login' => 'sessions#new'
+  get 'edit' => 'users#edit'
+  get 'my_rate' => 'rater#index'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.

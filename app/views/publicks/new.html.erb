@@ -1,4 +1,15 @@
 <h1>Создание общепита<h1>
+<% if @publick.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@publick.errors.count, "error") %> при создании:</h2>
+
+      <ul>
+      <% @publick.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= form_for @publick do |f| %>
     <%= f.label 'Название: ' %><br>
 	<%= f.text_field :name %><br>

@@ -13,7 +13,11 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
 //= require jquery.raty
 //= require ratyrate
 //= require_tree .
+
+//= require foundation
+$(document).foundation();

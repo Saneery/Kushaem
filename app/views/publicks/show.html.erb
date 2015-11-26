@@ -1,32 +1,46 @@
-<%= link_to 'List', publicks_path %> 
+
 <% unless @publick.approve %><p style="color: red">
-Publick checking
+<% if @publick.message %>
+<%= @publick.message %>
+<% end %>
+
 </p>
 <% end %>
-<h1><%= @publick.name %></h1><br>
+<h1><%= @publick.name.capitalize %></h1><br>
+<% if @publick.avatar_file_name %>
+<%= image_tag @publick.avatar %>
+<% end %>
 <%= @publick.description %><br>
 <%= @publick.address %><br>
 <% if current_user && @publick.approve %>
- <%= rating_for @publick, "original_score"%>
+ <%= rating_for @publick, "original_score", enable_half: true %>
 <% end %>
-<h2> Menu </h2>
+<%= link_to 'Оставить жалобу на заведение', new_publick_complaint_path(@publick), style: "font-size: 15px"%>
+<hr>
+<h3> Меню </h3>
 <% @publick.foods.each do |f| %>
-<%= link_to f.name, publick_food_path(@publick, f) %> - <%= f.price %> руб.<br>
-<%= f.tag_list %><br>
-<% if current_user && @publick.approve %>
- <%= rating_for f, 'original_score', :cancel => false %> <br>
- <% end %>
+  <%= render f %>
 <% end %>
 <% if current_user && current_user.editor? && current_user[:id] == @publick.user_id %>
 <%= link_to 'add food', new_publick_food_path(@publick) %>
 <% end %>
+<hr>
 <% @comments.each do |c| %>
-  <%= c.user_id %><br>
-  <%= c.content %><br>
+  <%= render c %>
 <% end %>
-<% if current_user && @publick.approve%>
+<% if current_user %>
 <%= form_for @comment, url: publick_comments_path(@publick,@comment) do |c| %>
-  <%= c.text_area :content %><br>
-  <%= c.submit %>
+<% if flash[:notice] %>
+<div data-alert class="alert-box alert radius">
+    <%= flash[:notice] %>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+</div>
+<% end %>
+  <%= c.text_area :content %>
+
+  <%= show_simple_captcha %>
+  <%= c.button 'Отправить', class: "small" %>
+  
   <% end %>
+  
   <% end %>

@@ -1,8 +1,0 @@
-<%= form_tag search_path, method: :get do %>
-  <select name="type">
-  	<option value="tag">По ингредиентам</option>
-  	<option value="name">По названию</option>
-  </select>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", name: nil %>
-  <% end %>
