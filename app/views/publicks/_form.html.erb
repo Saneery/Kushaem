@@ -1,0 +1,69 @@
+<% if @publick.errors.any? %>
+<div data-alert class="alert-box alert radius">
+
+  <h3>Исправьте ошибки:</h3>
+
+      <ul>
+      <% @publick.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+ </div>
+  
+<% end %>
+
+<%= form_for @publick do |f| %>
+<div class="row">
+    <div class="small-9 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Название</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :name, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Описание</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_area :description, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Город</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :city, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Адрес</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :address, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="right inline">Изображение</label>
+        </div>
+        <div class="small-9 columns">
+        
+          <%= f.file_field :image %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%= f.submit "Создать", class: "button"%>
+<% end %>

@@ -29,6 +29,13 @@ class FoodsController < ApplicationController
     @comments = @food.comments.all
   end
 
+  def destroy
+    food = Food.find(params[:id])
+    publick = food.publick
+    food.delete
+    redirect_to publick
+  end
+
   private
   def food_params
   	params.require(:food).permit(:image, :name, :description, :publick_id, :price)

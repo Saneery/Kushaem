@@ -1,25 +1,2 @@
 <h1>Создание общепита<h1>
-<% if @publick.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@publick.errors.count, "error") %> при создании:</h2>
-
-      <ul>
-      <% @publick.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<%= form_for @publick do |f| %>
-    <%= f.label 'Название: ' %><br>
-	<%= f.text_field :name %><br>
-	<%= f.label 'Описание: ' %><br>
-	<%= f.text_area :description %><br>
-	<%= f.label 'Город: ' %><br>
-	<%= f.text_field :city %><br>
-	<%= f.label 'Адресс' %><br>
-	<%= f.text_field :address %><br>
-	<%= f.label 'Изображение: ' %><br>
-	<%= f.file_field :image %><br>
-	<%= f.submit "Create" %>
-<% end %>
+<%= render 'form' %>
