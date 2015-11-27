@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates :first_name, :last_name, :email, :password, presence: true
+  validates :first_name, :last_name, :email, presence: true
   validates :first_name, :last_name, length: { minimum: 3, maximum: 20}
   has_many :publicks
   has_attached_file :avatar
