@@ -57,7 +57,7 @@ class PublicksController < ApplicationController
 
 	private
 	def publick_params
-    	params.require(:publick).permit(:name, :description, :address, :avatar)
+    	params.require(:publick).permit(:name, :description, :address, :city, :avatar)
     end
 
 
