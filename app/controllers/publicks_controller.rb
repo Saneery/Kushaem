@@ -42,6 +42,7 @@ class PublicksController < ApplicationController
 
 	def update
     	@publick = Publick.find params[:id]
+    	@publick.update(publick_params)
     	@publick.approve = false
 		@publick.message = 'Заведение проверяется администраторами'
 		if @publick.save
