@@ -1,5 +1,5 @@
 class Food < ActiveRecord::Base
-  before_save { |f| f.name.mb_chars.downcase! }
+  before_save { |f| f.name = f.name.mb_chars.downcase.to_s }
   
   acts_as_taggable
   belongs_to :publick

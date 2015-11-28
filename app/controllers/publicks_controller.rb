@@ -13,7 +13,7 @@ class PublicksController < ApplicationController
 	def create
 		@publick = Publick.new(publick_params)
 		@publick.approve = false
-		@publick.name.downcase!
+
 		@publick.message = 'Заведение проверяется администраторами'
 		if @publick.save
 			current_user.publicks << @publick
@@ -44,7 +44,7 @@ class PublicksController < ApplicationController
 	def update
     	@publick = Publick.find params[:id]
     	@publick.update(publick_params)
-    	@publick.name.downcase!
+
     	@publick.approve = false
 		@publick.message = 'Заведение проверяется администраторами'
 		if @publick.save

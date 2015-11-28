@@ -1,5 +1,6 @@
 class Publick < ActiveRecord::Base
-  before_save { |publick| publick.name.mb_chars.downcase! }
+  before_save { |publick| publick.name = publick.name.mb_chars.downcase.to_s }
+
   validates :name, :description, :address, :city, presence: true
   belongs_to :user
   has_many :foods
