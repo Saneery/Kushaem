@@ -1,10 +1,12 @@
 <% @objects.each do |s| %>
 <div class="row">
-<b><%= link_to s.name.capitalize, s%></b>
-<p><%= s.description %></p>
-<% if current_user %>
-  <%= rating_for s, 'original_score', enable_half: true %> <br>
-<% end %>
+
+<b><%= link_to s.name.capitalize, s%></b><br>
+<%= s.description %><br>
+<%= s.address %><br>
+
+<%= rating_for s, 'original_score', enable_half: true %> <br>
+
 
 </div>
 <% end %>

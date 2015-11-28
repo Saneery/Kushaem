@@ -1,0 +1,69 @@
+<% if @food.errors.any? %>
+<div data-alert class="alert-box alert radius">
+
+  <h3>Исправьте ошибки:</h3>
+
+      <ul>
+      <% @food.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <a href="#" class='close flash-data-alert'>&times;</a>
+ </div>
+  
+<% end %>
+
+<%= form_for @food, url: publick_foods_path, html: { multipart: true } do |f| %>
+<div class="row">
+    <div class="small-9 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Название</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :name, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Описание</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_area :description, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Цена</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :price, id: 'right-label' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Ингредиенты</label>
+        </div>
+        <div class="small-9 columns">
+          <%= text_area_tag :ingredients, "", id: 'right-label', placeholder: 'Введите через запятую' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <label class="right inline">Изображение</label>
+        </div>
+        <div class="small-9 columns">
+        
+          <%= f.file_field :image %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%= f.submit "Создать", class: "button"%>
+<% end %>

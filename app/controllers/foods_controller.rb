@@ -29,6 +29,21 @@ class FoodsController < ApplicationController
     @comments = @food.comments.all
   end
 
+  def edit
+    @food = Food.find params[:id]
+  end
+
+  def update
+    @food = Food.find params[:id]
+    if current_user.id == @food.publick.user_id
+      @food.tag_list = ""
+      @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
+      @food.update(food_params)
+      @food.save!
+    end
+    redirect_to @food.publick
+  end
+
   def destroy
     food = Food.find(params[:id])
     publick = food.publick

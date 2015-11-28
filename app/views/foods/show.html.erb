@@ -1,10 +1,10 @@
 <h1><%= @food.name %></h1>
 <%= image_tag @food.image_url %><br>
 <%= @food.tag_list %><br>
+<%= @food.price %> руб.<br>
 
-<% if current_user %>
-  <%= rating_for @food, 'original_score', enable_half: true %> <br>
-<% end %>
+<%= rating_for @food, 'original_score', enable_half: true %> <br>
+
 <hr>
 <% @comments.each do |c| %>
 <%= render c %>

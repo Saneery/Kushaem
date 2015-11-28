@@ -1,5 +1,4 @@
 <%= link_to food.name, food_path(food) %> - <%= food.price %> руб.<br>
 <small style="font-size: 14px; color: #555"><%= food.tag_list %></small><br>
-<% if current_user && food.publick.approve %>
+
  <%= rating_for food, 'original_score', :cancel => false, enable_half: true %> <br>
- <% end %>
