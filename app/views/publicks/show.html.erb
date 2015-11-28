@@ -14,8 +14,9 @@
 <%= @publick.address %><br>
 
 <%= rating_for @publick, "original_score", enable_half: true %>
-
+<% if current_user %>
 <%= link_to 'Оставить жалобу на заведение', new_publick_complaint_path(@publick), style: "font-size: 15px"%>
+<% end %>
 <hr>
 <h3> Меню </h3>
 <table>
@@ -39,7 +40,7 @@
     <% else %>
     	<% @publick.foods.each do |f| %>
 		<tr>
-			<td><%= f.name %><br><%= rating_for f, 'original_score', :cancel => false, enable_half: true %></td>
+			<td><%= link_to f.name, f %><br><%= rating_for f, 'original_score', :cancel => false, enable_half: true %></td>
 			<td width="253"><small style="font-size: 14px; color: #555"><%= f.tag_list %></small></td>
 			<td><%= f.price %> руб.</td>
 			

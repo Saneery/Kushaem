@@ -18,6 +18,7 @@ class FoodsController < ApplicationController
     if current_user.id == publick.user_id
       @food = publick.foods.new(food_params)
       @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
+      @food.name.downcase!
       @food.save!
     end
     redirect_to publick
@@ -39,6 +40,7 @@ class FoodsController < ApplicationController
       @food.tag_list = ""
       @food.tag_list.add(params[:ingredients].split(',').each{|w| w.downcase!})
       @food.update(food_params)
+      @food.name.downcase!
       @food.save!
     end
     redirect_to @food.publick
