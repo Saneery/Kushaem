@@ -1,7 +1,7 @@
 <% @objects.each do |s| %>
 <div class="row">
 
-<b><%= link_to s.name.capitalize, s%></b><br>
+<b><%= link_to s.name.mb_chars.capitalize, s%></b><br>
 <%= s.description %><br>
 <%= s.address %><br>
 

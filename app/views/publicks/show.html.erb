@@ -6,7 +6,7 @@
 
 </p>
 <% end %>
-<h1><%= @publick.name.capitalize %></h1><br>
+<h1><%= @publick.name.mb_chars.capitalize %></h1><br>
 <% if @publick.avatar_file_name %>
 <%= image_tag @publick.avatar %>
 <% end %>
