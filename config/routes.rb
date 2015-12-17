@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'my_rate' => 'rater#index'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get '/about' => 'page#about'
+  get '/info' => 'page#info'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -31,4 +31,9 @@ class PageController < ApplicationController
 	      end
 	    end
 	end
+
+	def about
+    end
+    def info
+    end
 end
